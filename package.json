@@ -1,6 +1,6 @@
 {
   "name": "posix-tz-string-parser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Parses POSIX timezone specification strings like 'EST5EDT,M3.2.0,M11.1.0' into structured rules for offset, abbreviation, and transition dates.",
   "type": "module",
   "main": "src/index.js",
