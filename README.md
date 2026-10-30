@@ -31,3 +31,10 @@ The deliberate trade-off: the library returns the *rule*, not a *computed transi
 ## The awkward edge
 
 POSIX TZ offsets are **west-positive**, the opposite of ISO 8601. `EST5` means UTC-5. Every parsed rule carries both `offsetMinutes` (raw POSIX sign) and `utcOffsetMinutes` (ISO sign) so you can pick the convention you need without re-deriving it. Sub-minute offset seconds are rejected rather than silently truncated, because a consumer computing transitions from a truncated value would get the wrong answer. DST offsets that are omitted default to one hour ahead of standard time per POSIX.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
